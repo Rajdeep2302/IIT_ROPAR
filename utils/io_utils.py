@@ -27,10 +27,10 @@ def folder_image():
         print("Invalid folder path.")
         return
 
-    os.makedirs("resize", exist_ok=True)
-    os.makedirs("binary", exist_ok=True)
-    os.makedirs("skeletonise/image", exist_ok=True)
-    os.makedirs("skeletonise/csv", exist_ok=True)
+    os.makedirs("new_resize", exist_ok=True)
+    os.makedirs("new_binary", exist_ok=True)
+    os.makedirs("new_skeletonise/image", exist_ok=True)
+    os.makedirs("new_skeletonise/csv", exist_ok=True)
 
     for idx, filename in enumerate(os.listdir(folder_path), start=1):
         if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff')):
@@ -41,10 +41,10 @@ def folder_image():
         if image is None:
             print(f"Skipping invalid image: {filename}")
             continue
-        resized_path = f"resize/resize_image_{idx}.png"
-        bin_path = f"binary/binary_image_{idx}.png"
-        csv_path = f"skeletonise/csv/skeletonise_image_{idx}.csv"
-        out_path = f"skeletonise/image/skeletonise_image_{idx}.png"
+        resized_path = f"new_resize/resize_image_{idx}.png"
+        bin_path = f"new_binary/binary_image_{idx}.png"
+        csv_path = f"new_skeletonise/csv/skeletonise_image_{idx}.csv"
+        out_path = f"new_skeletonise/image/skeletonise_image_{idx}.png"
 
         image = resize_image(image, resized_path)
         binary_image = convert_image(image)
