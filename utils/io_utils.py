@@ -5,6 +5,7 @@ from utils.graph_analysis import *
 from .skeleton import Core_code
 from .circle import *
 from .eclipse import *
+from .volume import *
 from .draw_node_circles import *
 
 def single_file():
@@ -23,10 +24,12 @@ def single_file():
     binary_image_path = "binary_image.png"
     cv.imwrite(binary_image_path, binary_image)
 
+    compute_shape_volumes(binary_image_path, "Volume_file.csv")
+
     img_path = Core_code(binary_image_path, "skeletonise_image.csv", "skeletonise_image.png")
     circle_image(binary_image_path, "circle_image.png", "circle_image.csv")
     eclipse_image(binary_image_path, "eclipse_image.png", "eclipse_image.csv")
-    all_circle(binary_image_path, "all_circle.png", "all_circle.csv","shape/node_circle.csv")
+    # all_circle(binary_image_path, "all_circle.png", "all_circle.csv","shape/node_circle.csv")
 
 def folder_image():
     folder_path = input("Enter path to folder: ").strip()
