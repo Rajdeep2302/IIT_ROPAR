@@ -29,7 +29,7 @@ def single_file():
     img_path = Core_code(binary_image_path, "skeletonise_image.csv", "skeletonise_image.png")
     circle_image(binary_image_path, "circle_image.png", "circle_image.csv")
     eclipse_image(binary_image_path, "eclipse_image.png", "eclipse_image.csv")
-    # all_circle(binary_image_path, "all_circle.png", "all_circle.csv","shape/node_circle.csv")
+    all_circle(binary_image_path, "all_circle.png", "all_circle.csv","shape/node_circle.csv")
 
 def folder_image():
     folder_path = input("Enter path to folder: ").strip()
@@ -69,11 +69,13 @@ def folder_image():
         all_circle_csv_path = f"output/all_circle/csv/circle_image_{idx}.csv"
         all_circle_shape_csv_path = f"output/all_circle/shape/circle_image_{idx}.csv"
         all_circle_out_path = f"output/all_circle/image/circle_image_{idx}.png"
+        volume = f"output/volume_{idx}.png"
 
 
         image = resize_image(image, resized_path)
         binary_image = convert_image(image)
         cv.imwrite(bin_path, binary_image)
+        compute_shape_volumes(bin_path, volume)
         img_path =  Core_code(bin_path, scal_csv_path, scal_out_path)
         circle_image(bin_path, circles_out_path, circles_csv_path)
         eclipse_image(bin_path, eclipse_out_path, eclipse_csv_path)
